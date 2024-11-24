@@ -1,0 +1,71 @@
+main {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	padding: 36px 16px;
+}
+
+.app {
+	width: 100%;
+	max-width: 768px;
+}
+
+.app header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+}
+
+.app header h1 {
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.app header button {
+	color: white;
+	font-size: 16px;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 16px;
+	background-color: lightblue;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	margin-bottom: 8px;
+}
+
+.item:last-of-type {
+	margin-bottom: 0;
+}
+
+.item input[type='checkbox'] {
+	margin-right: 8px;
+}
+
+.item input[type='text'] {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 20px;
+	font-weight: 400;
+	color: black;
+	flex: 1 1 0%;
+	margin-right: 8px;
+}
+
+.item input[type='text']:not(:disabled) {
+	border-bottom: 2px solid #ffffff;
+}
+
+.item.completed input[type='text'] {
+	text-decoration: line-through;
+}
+
+.item.completed {
+	opacity: 0.7;
+}
