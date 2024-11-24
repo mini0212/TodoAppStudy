@@ -14,12 +14,13 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 1rem;
+	margin-bottom: 24px;
 }
 
 .app header h1 {
 	font-size: 20px;
 	font-weight: 400;
+    color: white;
 }
 
 .app header button {
@@ -31,7 +32,7 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 8px 16px;
+	padding: 12px 20px;
 	background-color: lightblue;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 	border-radius: 4px;
@@ -48,9 +49,9 @@ main {
 
 .item input[type='text'] {
 	appearance: none;
+    background: none;
 	border: none;
 	outline: none;
-	background: none;
 	font-size: 20px;
 	font-weight: 400;
 	color: black;
