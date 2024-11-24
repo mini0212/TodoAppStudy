@@ -21,7 +21,7 @@ function createNewTodo() {
 	todos.unshift(item);
 
 	// 요소 생성
-	const { itemElement, inputElement } = createTodoElement(item);
+	const { itemElement, inputElement, editButtonElement, removeButtonElement } = createTodoElement(item);
 
 	// 리스트 요소 안에 방금 생성한 아이템 요소 추가(가장 첫번째로)
 	list.prepend(itemElement);
@@ -73,13 +73,13 @@ function createTodoElement(item) {
 
 	// 요소별 이벤트 리스너 추가
 	inputElement.addEventListener('input', () => {
-        console.log('input');
+		console.log('input');
 		item.text = inputElement.value;
 	});
 
 	checkboxElement.addEventListener('change', () => {
 		item.isComplete = checkboxElement.checked;
-        console.log('change');
+		console.log('change');
 		if (item.isComplete) {
 			itemElement.classList.add('complete');
 		} else {
@@ -90,12 +90,13 @@ function createTodoElement(item) {
 	});
 
 	inputElement.addEventListener('blur', () => {
-        console.log('blur');
+		console.log('blur');
 		inputElement.setAttribute('disabled', '');
+        saveToLocalStorage();
 	});
 
 	editButton.addEventListener('click', () => {
-        console.log('edit');
+		console.log('edit');
 		inputElement.removeAttribute('disabled');
 		inputElement.focus();
 	});
@@ -104,7 +105,7 @@ function createTodoElement(item) {
 		console.log('remove');
 		todos = todos.filter((t) => t.id !== item.id);
 		itemElement.remove();
-        
+
         saveToLocalStorage();
 	});
 
@@ -123,4 +124,27 @@ function saveToLocalStorage() {
 	const data = JSON.stringify(todos);
     localStorage.setItem('my_todos', data);
 }
+
+// 새로고침 시 로컬 스토리지에 있는 데이터 가져오기
+function loadFromLocalStorage() {
+    console.log('로컬 스토리지에서 데이터 가져오기');
+    const data = localStorage.getItem('my_todos');
+
+    if (data) {
+        todos = JSON.parse(data);
+    }
 }
+
+function displayTodos() {
+    console.log('로컬 스토리지에서 데이터 가져오기');
+    loadFromLocalStorage();
+
+    for (let i = 0; i < todos.length; i++) {
+        const item = todos[i];
+        const { itemElement } = createTodoElement(item);
+
+        list.append(itemElement)
+    }
+}
+
+displayTodos();
