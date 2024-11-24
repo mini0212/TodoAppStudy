@@ -30,6 +30,8 @@ function createNewTodo() {
 	inputElement.removeAttribute('disabled');
 	// focus on input element
 	inputElement.focus();
+
+    saveToLocalStorage(); // 생성한 아이템 로컬 스토리지에 저장
 }
 
 function createTodoElement(item) {
@@ -83,6 +85,8 @@ function createTodoElement(item) {
 		} else {
 			itemElement.classList.remove('complete');
 		}
+
+        saveToLocalStorage();
 	});
 
 	inputElement.addEventListener('blur', () => {
@@ -96,11 +100,13 @@ function createTodoElement(item) {
 		inputElement.focus();
 	});
 
-    removeButton.addEventListener('click', () => {
-        console.log('remove');
-        todos = todos.filter(t => t.id !== item.id);
-        itemElement.remove();
-    });
+	removeButton.addEventListener('click', () => {
+		console.log('remove');
+		todos = todos.filter((t) => t.id !== item.id);
+		itemElement.remove();
+        
+        saveToLocalStorage();
+	});
 
 	return {
 		itemElement,
@@ -108,4 +114,13 @@ function createTodoElement(item) {
 		editButton,
 		removeButton,
 	};
+}
+
+// 로컬 스토리지에 저장
+function saveToLocalStorage() {
+	console.log('로컬 스토리지에 저장');
+	// 항상 string type으로 저장
+	const data = JSON.stringify(todos);
+    localStorage.setItem('my_todos', data);
+}
 }
